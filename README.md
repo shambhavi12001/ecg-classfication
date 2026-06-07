@@ -13,13 +13,7 @@ MACs, latency, and accuracy for each.
 
 ```
 .
-├── ecg_efficiency.ipynb     # main experiment notebook (all four levers + plots)
-├── report/
-│   ├── main.tex             # ACM two-column report (acmtog)
-│   ├── references.bib       # bibliography (BibTeX)
-│   └── figures/
-│       ├── example_beats.png        # 5-class example-beats strip (from notebook)
-│       └── accuracy_vs_length.png   # accuracy-vs-input-length plot (from notebook)
+├── ecg_efficiency.ipynb     
 └── README.md
 ```
 
@@ -65,16 +59,6 @@ To regenerate the report figures, save the notebook's example-beats figure as
 `report/figures/example_beats.png` and the accuracy-vs-length plot as
 `report/figures/accuracy_vs_length.png`.
 
-## Building the report
-
-Open `report/main.tex` in Overleaf (ACM `acmart` class is built in) and compile
-with pdfLaTeX → BibTeX → pdfLaTeX ×2, or locally:
-
-```bash
-cd report
-pdflatex main && bibtex main && pdflatex main && pdflatex main
-```
-
 ## Results (real MIT–BIH)
 
 | Model | Params | Size | Accuracy |
@@ -84,14 +68,4 @@ pdflatex main && bibtex main && pdflatex main && pdflatex main
 | MobileNet-1D (FP32)        | 7,493  | —        | 0.9758 |
 | Residual CNN (L=32)        | 52,933 | 740.4 KB | 0.9774 |
 
-Takeaway: input shortening cuts compute (MACs) but not footprint; the
-depthwise-separable architecture (~7.7× fewer params) and int8 quantization
-(~9× smaller on disk) are the levers that actually shrink the model for a
-wearable, with negligible accuracy cost.
 
-## Use of AI tools
-
-An AI assistant (ChatGPT) was used to help locate suitable public ECG datasets,
-to help draft and edit the report text, and to explain the MobileNet /
-depthwise-separable architecture. All experiments, code, and reported results
-were produced and verified by the author.
